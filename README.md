@@ -8,5 +8,5 @@ Get started:
 git clone https://github.com/jforseth210/podcastinayearplayer
 ```
 
-If you have IntelliJ IDEA installed, click File > Open, navigate to the installed directory, and click the green play button in the top right. 
+If you have IntelliJ IDEA installed, click File > Open, navigate to the installed directory, select app, trust project, and click the green play button in the top right. 
 You can also use gradle to run it on the command-line.
