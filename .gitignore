@@ -76,6 +76,4 @@ kotlin-ide/
 /gradlew
 /gradlew.bat
 
-# IDE-related files
-/.gitattributes
-/settings.gradle.kts
+
