@@ -21,13 +21,12 @@ val BIBLE_URL:URL =URL( "https://feeds.fireside.fm/bibleinayear/rss")
 fun main() {
     mainloop@ while (true) {
          // Prompt until valid input for which podcast to play
-        var selectedURL: URL? = null;
+        var selectedURL: URL? = null
         while (selectedURL == null) {
             print("Would you like to listen to the [B]ible in a Year or the [C]atechism in Year (q to quit):")
-            val bibleOrCatechism = readLine();
-            if (bibleOrCatechism == null) continue
+            val bibleOrCatechism = readlnOrNull() ?: continue
             if (listOf("b", "bible", "bible in a year", "biy").contains(bibleOrCatechism.lowercase())) {
-                selectedURL = BIBLE_URL;
+                selectedURL = BIBLE_URL
             } else if (listOf("c", "catechism", "catechism in a year", "ciy").contains(bibleOrCatechism.lowercase())){
                 selectedURL = CATECHISM_URL
             } else if (listOf("q", "quit", "exit").contains(bibleOrCatechism.lowercase())){
@@ -44,24 +43,24 @@ fun main() {
         val builderFactory: DocumentBuilderFactory = DocumentBuilderFactory.newInstance()
         val docBuilder: DocumentBuilder = builderFactory.newDocumentBuilder()
         val doc: Document = docBuilder.parse(selectedURL.toString())
-        doc.documentElement.normalize();
+        doc.documentElement.normalize()
 
         // Each "item" is an episode of the podcast
         val items: NodeList = doc.documentElement.getElementsByTagName("item")
 
         // Create empty list of episodes
-        val episodes = mutableListOf<Episode>();
+        val episodes = mutableListOf<Episode>()
 
         // Starting value of while loop iterator
         // Go backwards since the oldest episode is at the bottom of the xml file
-        var episodeIndex = items.length - 1;
+        var episodeIndex = items.length - 1
 
         // Go until we have the full year of episodes
         while (episodes.size <= 365) {
             // Get the episode
-            val episode: Node = items.item(episodeIndex);
+            val episode: Node = items.item(episodeIndex)
             // Convert it to an element
-            val episodeElement = episode as Element;
+            val episodeElement = episode as Element
             // See if it's a Day N episode
             if (isDay(episodeElement)) {
                 // Add it to the list if so
@@ -98,7 +97,7 @@ fun main() {
         }
 
         // Get episode from list of episodes
-        val requestedEpisode = episodes.get(requestedEpisodeIndex - 1)
+        val requestedEpisode = episodes[requestedEpisodeIndex - 1]
         // Print out name
         println("Playing ${requestedEpisode.title}")
         // Play in mpv
@@ -122,7 +121,7 @@ fun episodeFromElement(element: Element): Episode{
         val episodeTitleWithoutYear = " \\(\\d{4}\\)".toRegex().replace(episodeFullTitle, "")
         val episodeTitle = episodeTitleWithoutYear.split(": ")[1]
         val episodeURL = (element.getElementsByTagName("enclosure").item(0) as Element).getAttribute("url")
-        return Episode(episodeTitle, URL(episodeURL));
+        return Episode(episodeTitle, URL(episodeURL))
 
 }
 
