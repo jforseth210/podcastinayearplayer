@@ -70,7 +70,6 @@ kotlin-ide/
 /kls_database.db
 
 # Dependency files
-/gradle/libs.versions.toml
 /gradle/wrapper/gradle-wrapper.jar
 /gradle/wrapper/gradle-wrapper.properties
 /gradlew
