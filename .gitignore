@@ -69,10 +69,5 @@ kotlin-ide/
 /app/build/
 /kls_database.db
 
-# Dependency files
-/gradle/wrapper/gradle-wrapper.jar
-/gradle/wrapper/gradle-wrapper.properties
-/gradlew
-/gradlew.bat
 
 

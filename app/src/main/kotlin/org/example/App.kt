@@ -122,7 +122,6 @@ fun episodeFromElement(element: Element): Episode{
         val episodeTitle = episodeTitleWithoutYear.split(": ")[1]
         val episodeURL = (element.getElementsByTagName("enclosure").item(0) as Element).getAttribute("url")
         return Episode(episodeTitle, URL(episodeURL))
-
 }
 
 /**
